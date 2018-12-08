@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+@mixin DisplayStyle {
+    position: absolute;
+    border: 1px solid black;
+    background-color: rgb(151,163,141);        
+    left: 8%;
+    width:84%;
+    height:6%;
+    text-align: right;   
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px; 
+    font-weight: 400;   
+}
+
+@mixin buttonStyle{
+    position: absolute;
+    width: 70px;
+    height:40px;
+    border-radius: 10px;
+    transform: translateX(-13px);   
+    
+}
+.App{     
+   position: relative;
+   background-color: rgb(248, 233, 213);
+   background-size: contain;
+   height: 685px;
+   width:800px; 
+   /* Preserve aspet ratio */
+   min-width: 100%;
+   min-height: 100%;
+  
+    .Calculator{
+        position: absolute;
+        border: 1px solid red;
+        border-radius: 10px;
+        background-color: rgb(55,66,84);
+        background:linear-gradient(75deg, rgba(55,66,84,1) 0%, rgba(101,117,143,1) 95%);
+        width:350px;
+        height: 500px;         
+        left:35%;
+        top:10%;    
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);       
+
+        .DisplayPanel{
+            border: 1px solid black;
+            height:150px;
+            margin:10px;
+            background-color: rgb(204,204,206);
+            border-radius: 10px;
+            
+            .TopDisplay{
+                top:8%;
+                @include DisplayStyle;
+                border-bottom: 0px;
+            }
+            .BottomDisplay{
+                top:14%;
+                @include DisplayStyle;  
+                border-top:0px;   
+            }
+        }        
+        .ButtonPanel{
+            position: absolute;
+           // border: 1px solid black;
+            left:8%;
+            width:84%;
+            top:40%;
+            height:68%;
+
+            .AC{
+                position: absolute;
+                width: 140px;
+                height:40px;
+                border-radius: 10px;     
+                background-color: rgb(252, 49, 49);
+                transform: translateX(-13px);
+                color: aliceblue;
+            }
+            .Operator{    
+                @include buttonStyle;
+                color: aliceblue;
+                background-color: rgb(95, 134, 134);
+            }
+            
+            .Number{
+                @include buttonStyle;
+                color: rgb(25, 31, 36);
+            }
+            
+            .second-row,.third-row,.fourth-row,.fifth-row{     
+                margin-top:50px;    
+            }
+            
+            .Equal{
+                background-color: orange;
+            }           
+          
+        }
+    }    
+
+}
+
+
+
