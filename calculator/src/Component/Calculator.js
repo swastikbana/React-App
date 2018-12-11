@@ -88,14 +88,19 @@ class Calculator extends Component {
         break;
 
       case "Operator Equal":
-        if(isNaN(this.state.topDisplayValue[this.state.topDisplayValue.length-1])){
-            this.setState({bottomDisplayValue:
-                    parseFloat(eval(this.state.topDisplayValue.substring(0,this.state.topDisplayValue.length-1)).toFixed(2))});
-        }
-        else
-            this.setState({ bottomDisplayValue: 
-                              parseFloat(eval(this.state.topDisplayValue).toFixed(2)),
-                           equalPressed:'Y' });
+        if(this.state.topDisplayValue !==""){
+             if(isNaN(this.state.topDisplayValue[this.state.topDisplayValue.length-1])){
+                  this.setState({bottomDisplayValue:
+                      parseFloat(eval(this.state.topDisplayValue.substring(0,this.state.topDisplayValue.length-1)).toFixed(2))});
+              }
+              else
+                  this.setState({ bottomDisplayValue: 
+                                  parseFloat(eval(this.state.topDisplayValue).toFixed(2)),
+                                 equalPressed:'Y' });
+          }else
+              this.setState({ bottomDisplayValue: 
+                  parseFloat(eval(this.state.bottomDisplayValue).toFixed(2))
+                  });  
       break;
       
       case "Operator Delete":
@@ -121,8 +126,14 @@ class Calculator extends Component {
                             bottomDisplayValue:this.state.bottomDisplayValue.slice(0,-1),
                             tempValue:this.state.tempValue.slice(0,-1)});
           }
-          else              
-              this.setState({bottomDisplayValue:this.state.bottomDisplayValue.slice(0,-1)});
+          else     
+              if(this.state.bottomDisplayValue.length<=1 || !this.state.bottomDisplayValue){
+                 this.setState({
+                    bottomDisplayValue: 0,         
+                    tempValue:0
+                  });
+              }else         
+                  this.setState({bottomDisplayValue:this.state.bottomDisplayValue.slice(0,-1)});
       break;
 
       default:
